@@ -38,7 +38,11 @@ class Slider extends React.Component {
     autoPlay() {
         let nextSlide = this.isLastSlide() ? 0 : this.state.activeSlide + 1;
 
-        this.setState({ activeSlide: nextSlide });
+        if (!nextSlide && !this.props.config.loop) {
+            clearInterval(this.interval);
+        } else {
+            this.setState({ activeSlide: nextSlide });
+        }
     }
 
     getCaretStyles() {
@@ -101,7 +105,7 @@ class Slider extends React.Component {
     render() {
         return(
             <div className="slider">
-                <SliderArrow direction="left" disabled={!this.props.config.loop && this.isFirstSlide()} onClick={this.handlePrev} />
+                <SliderArrow direction="left" disabled={this.props.config.loop ? false : this.isFirstSlide()} onClick={this.handlePrev} />
 
                 <div className="viewport">
                     <div className="caret"
@@ -116,7 +120,7 @@ class Slider extends React.Component {
                     </div>
                 </div>
 
-                <SliderArrow direction="right" disabled={!this.props.config.loop && this.isLastSlide()} onClick={this.handleNext} />
+                <SliderArrow direction="right" disabled={this.props.config.loop ? false : this.isLastSlide()} onClick={this.handleNext} />
 
                 <Bullets slides={this.props.slides}
                          activeSlide={this.state.activeSlide}
