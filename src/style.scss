@@ -1,5 +1,166 @@
-$color: green;
-
-body {
-  background-color: $color;
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
+
+.container {
+    margin: 80px auto 0;
+    max-width: 1000px;
+
+    h1 {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-align: center;
+    }
+}
+
+.slider {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.viewport {
+    max-width: 700px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.caret {
+    @include clearfix;
+
+    position: relative;
+}
+
+.slide {
+    &.animation-slide {
+        float: left;
+    }
+
+    &.animation-fade {
+        transition: opacity 1s ease-in-out;
+        opacity: 0;
+
+        &:not(.active) {
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+
+        &.active {
+            opacity: 1;
+        }
+    }
+}
+
+button {
+    background: 0 0;
+    border: none;
+    color: #757575;
+    position: relative;
+    height: 36px;
+    margin: 0;
+    min-width: 64px;
+    padding: 0 16px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+
+    &:hover {
+        background-color: rgba(158, 158, 158, .2);
+    }
+
+    &:active {
+        background-color: rgba(158, 158, 158, .4);
+    }
+
+    &.disabled {
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:active {
+            background-color: transparent;
+        }
+    }
+
+    &.icon {
+        font-size: 30px;
+        height: 80px;
+        margin-left: 0;
+        margin-right: 0;
+        min-width: 32px;
+        width: 32px;
+        padding: 0;
+        overflow: hidden;
+        line-height: normal;
+    }
+
+    &.slider-arrow {
+        width: 50px;
+
+        .material-icons {
+            font-size: 35px;
+            transform: translate(-17px, -12px);
+        }
+    }
+
+    .material-icons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-12px, -12px);
+        line-height: 24px;
+        width: 24px;
+        font-size: 24px;
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+
+.bullets {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.bullet {
+    display: inline-block;
+    margin: 0 10px;
+    width: 13px;
+    height: 13px;
+    background-color: #b5b5b5;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.active {
+        cursor: default;
+        background-color: black;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
